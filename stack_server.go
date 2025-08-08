@@ -137,7 +137,7 @@ func (s *ServerStack) ProcessMessage(chunk *Chunk) error {
 		}
 
 		index := s.FLV.FindBufferIndexByMediaType(utils.AVMediaTypeAudio)
-		audioData, _ := s.FLV.DataPipeline.Feat(index)
+		audioData, _ := s.FLV.DataPipeline.Fetch(index)
 
 		discard, err := s.FLV.ProcessAudioData(audioData, s.audioTimestamp)
 		if discard || err != nil {
@@ -154,7 +154,7 @@ func (s *ServerStack) ProcessMessage(chunk *Chunk) error {
 		}
 
 		index := s.FLV.FindBufferIndexByMediaType(utils.AVMediaTypeVideo)
-		videoData, err := s.FLV.DataPipeline.Feat(index)
+		videoData, err := s.FLV.DataPipeline.Fetch(index)
 		if err != nil {
 			return err
 		}
